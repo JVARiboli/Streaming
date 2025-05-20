@@ -255,9 +255,8 @@ const movies = [
 
 const moviesContainer = document.getElementById('movies');
 
-// Função para criar os cards de filme
 function renderMovies(list) {
-  moviesContainer.innerHTML = ''; // limpa antes
+  moviesContainer.innerHTML = ''; 
   list.forEach(movie => {
     const div = document.createElement('div');
     div.classList.add('movie-item');
@@ -280,14 +279,12 @@ function updateHighlightedMovie(movie) {
   document.querySelector('#movie-info a.trailer-btn').href = movie.trailer;
 }
 
-// Filtrar por categoria
 function filterByCategory(category) {
   const filtered = movies.filter(movie => movie.categories.includes(category));
   renderMovies(filtered);
   if (filtered.length > 0) {
     updateHighlightedMovie(filtered[0]);
   } else {
-    // Se não achar nenhum, limpa a área de destaque
     document.getElementById('highlighted-image').src = '';
     document.getElementById('highlighted-title').textContent = 'Nenhum filme encontrado';
     document.querySelector('#highlighted-movie p:nth-of-type(1)').textContent = '';
@@ -297,5 +294,35 @@ function filterByCategory(category) {
   }
 }
 
-// Renderiza todos inicialmente
+const trailerBtn = document.querySelector('#movie-info a.trailer-btn');
+const modal = document.getElementById('trailer-modal');
+const iframe = document.getElementById('trailer-iframe');
+const closeBtn = modal.querySelector('.close-btn');
+
+trailerBtn.addEventListener('click', function(event) {
+  event.preventDefault(); 
+
+  const trailerUrl = this.href;
+
+  const videoIdMatch = trailerUrl.match(/v=([^&]+)/);
+  if (videoIdMatch && videoIdMatch[1]) {
+    const embedUrl = `https://www.youtube.com/embed/${videoIdMatch[1]}?autoplay=1`;
+    iframe.src = embedUrl;
+    modal.style.display = 'flex';
+  }
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+  iframe.src = '';
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+    iframe.src = '';
+  }
+});
+
+
 renderMovies(movies);
