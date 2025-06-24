@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Página inicial</title>
-<link rel="stylesheet" href="/css/paginaInicial.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página inicial</title>
+  <link rel="stylesheet" href="/css/paginaInicial.css" />
+  <script src="https://cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js"></script>
 </head>
+
 <body>
 
-<nav id="category-menu">
-  <ul>
-    <li><a onclick="filterByCategory('Ação')">Ação</a></li>
-    <li><a onclick="filterByCategory('Comédia')">Comédia</a></li>
-    <li><a onclick="filterByCategory('Drama')">Drama</a></li>
-    <li><a onclick="filterByCategory('Terror')">Terror</a></li>
-    <li><a onclick="filterByCategory('Ficção Científica')">Ficção Científica</a></li>
-    <li><a onclick="filterByCategory('Animação')">Animação</a></li>
-  </ul>
-</nav>
+  <nav id="category-menu">
+    <ul>
+      <li><a onclick="filterByCategory('Ação')">Ação</a></li>
+      <li><a onclick="filterByCategory('Comédia')">Comédia</a></li>
+      <li><a onclick="filterByCategory('Drama')">Drama</a></li>
+      <li><a onclick="filterByCategory('Terror')">Terror</a></li>
+      <li><a onclick="filterByCategory('Ficção Científica')">Ficção Científica</a></li>
+      <li><a onclick="filterByCategory('Animação')">Animação</a></li>
+    </ul>
+  </nav>
 
-<main>
-  <section id="highlighted-movie">
-    <img id="highlighted-image" src="https://pt.wikipedia.org/wiki/The_Dark_Knight_%28trilha_sonora%29#/media/Ficheiro:DarkKnightTrilha.jpg" alt="The Dark Knight" />
-    <div id="movie-info">
-      <h2 id="highlighted-title">The Dark Knight</h2>
-      <p><strong>Gênero:</strong>Ação / Super-herói</p>
-      <p><strong>Estreia:</strong> 18 de julho de 2008</p>
-      <p id="highlighted-synopsis"><strong>Sinopse:</strong> Batman enfrenta o Coringa para salvar Gotham City.</p>
-      <a href="https://www.youtube.com/watch?v=EXeTwQWrcwY" target="_blank" class="trailer-btn">Assistir Trailer</a>
+  <main>
+    <section id="highlighted-movie">
+      <img id="highlighted-image"
+        src="https://pt.wikipedia.org/wiki/The_Dark_Knight_%28trilha_sonora%29#/media/Ficheiro:DarkKnightTrilha.jpg"
+        alt="The Dark Knight" />
+      <div id="movie-info">
+        <h2 id="highlighted-title">The Dark Knight</h2>
+        <p><strong>Gênero:</strong>Ação / Super-herói</p>
+        <p><strong>Estreia:</strong> 18 de julho de 2008</p>
+        <p id="highlighted-synopsis"><strong>Sinopse:</strong> Batman enfrenta o Coringa para salvar Gotham City.</p>
+        <a href="https://www.youtube.com/watch?v=EXeTwQWrcwY" target="_blank" class="trailer-btn">Assistir Trailer</a>
+      </div>
+    </section>
+
+    <section id="movie-grid">
+      <h3>Filmes Disponíveis</h3>
+      <div id="movies">
+      </div>
+    </section>
+  </main>
+
+  <div id="trailer-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <iframe id="trailer-iframe" src="" frameborder="0" allowfullscreen></iframe>
     </div>
-  </section>
-
-  <section id="movie-grid">
-    <h3>Filmes Disponíveis</h3>
-    <div id="movies">
-    </div>
-  </section>
-</main>
-
-<div id="trailer-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <iframe id="trailer-iframe" src="" frameborder="0" allowfullscreen></iframe>
   </div>
-</div>
 
-<script src="/js/paginaInicial.js"></script>
+  <script src="/js/paginaInicial.js"></script>
 </body>
+
 </html>

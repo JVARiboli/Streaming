@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <div class="admin-container">
+            <h1>Cadastro de Usuários</h1>
+            <form id="userForm">
+                <label for="usuario">Usuário</label>
+                <input type="text" id="usuario" required>
+
+                <label for="password">Senha</label>
+                <input type="password" id="password" required>
+
+                <label for="role">Tipo de Acesso</label>
+                <select id="role" required>
+                    <option value="usuário">Usuário</option>
+                    <option value="administrador">Administrador</option>
+                </select>
+
+                <button type="submit">Adicionar Usuário</button>
+                <button type="button" id="userFormCancel" style="display: none;">Cancelar Edição</button>
+            </form>
+
+            <h2>Usuários Cadastrados</h2>
+            <div id="userList"></div>
+        </div>
+
+        <div class="admin-container">
+            <h1>Cadastro de Filmes</h1>
+            <form id="movieForm">
+                <label for="title">Título</label>
+                <input type="text" id="title" required>
+
+                <label for="description">Sinopse</label>
+                <textarea id="description" required></textarea>
+
+                <label for="category">Categoria</label>
+                <select id="category" required>
+                    <option value="Ação">Ação</option>
+                    <option value="Comédia">Comédia</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Ficção Científica">Ficção Científica</option>
+                    <option value="Animação">Animação</option>
+                </select>
+
+                <label for="trailer">URL do Trailer</label>
+                <input type="url" id="trailer" required>
+
+                <label for="image">URL da Imagem</label>
+                <input type="url" id="image" required>
+
+                <button type="submit">Adicionar Filme</button>
+                <button type="button" id="movieFormCancel" style="display: none;">Cancelar Edição</button>
+            </form>
+
+            <h2>Filmes Cadastrados</h2>
+            <div id="movieList"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb/dist/pouchdb.min.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,71 +1,83 @@
-const db = new PouchDB('Finances');
+const db = new PouchDB('usuariosDB');
 
-function showForm(formType) {
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const loginTab = document.querySelector('.tab-login');
-    const registerTab = document.querySelector('.tab-register');
-
-    if (formType === 'login') {
-        loginForm.classList.add('active');
-        registerForm.classList.remove('active');
-        loginTab.classList.add('active');
-        registerTab.classList.remove('active');
-    } else {
-        loginForm.classList.remove('active');
-        registerForm.classList.add('active');
-        loginTab.classList.remove('active');
-        registerTab.classList.add('active');
+async function criarUsuarioAdmin() {
+    try {
+        await db.get('admin');
+    } catch (err) {
+        if (err.status === 404) {
+            await db.put({
+                _id: 'admin',
+                password: 'admin',
+                tipoUsuario: 'administrador'
+            });
+            console.log('✅ Usuário administrador criado automaticamente.');
+        }
     }
 }
 
-document.getElementById('loginForm').querySelector('form').addEventListener('submit', async function (e) {
+criarUsuarioAdmin();
+
+function showForm(form) {
+    document.getElementById('loginForm').classList.remove('active');
+    document.getElementById('registerForm').classList.remove('active');
+
+    if (form === 'login') {
+        document.getElementById('loginForm').classList.add('active');
+    } else {
+        document.getElementById('registerForm').classList.add('active');
+    }
+}
+
+document.querySelector('#loginForm form').addEventListener('submit', async (e) => {
     e.preventDefault();
+
     const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value;
+    const password = document.getElementById('password').value.trim();
+    const errorMsg = document.getElementById('error-msg');
 
     try {
-        const userDoc = await db.get('user_' + username);
+        const user = await db.get(username);
 
-        if (userDoc.password === password) {
-            alert('Login bem-sucedido!');
-            document.getElementById('error-msg').classList.add('hidden');
-            window.location.href = 'paginaInicial.html';
+        if (user.password === password) {      
+            if (user.tipoUsuario === 'administrador')
+                window.location.href = 'admin.html';
+            else
+                window.location.href = 'paginainicial.html';
         } else {
-            document.getElementById('error-msg').textContent = 'Senha incorreta.';
-            document.getElementById('error-msg').classList.remove('hidden');
+            errorMsg.classList.remove('hidden');
         }
+        
     } catch (err) {
-        document.getElementById('error-msg').textContent = 'Usuário não encontrado.';
-        document.getElementById('error-msg').classList.remove('hidden');
+        errorMsg.classList.remove('hidden');
     }
 });
 
-document.getElementById('registerForm').querySelector('form').addEventListener('submit', async function (e) {
+document.querySelector('#registerForm form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const newUsername = document.getElementById('newUsername').value.trim();
-    const newPassword = document.getElementById('newPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
 
-    if (newPassword !== confirmPassword) {
-        alert('As senhas não coincidem. Tente novamente.');
+    const username = document.getElementById('newUsername').value.trim();
+    const password = document.getElementById('newPassword').value.trim();
+    const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+    if (password !== confirmPassword) {
+        alert('❌ As senhas não coincidem!');
         return;
     }
 
     try {
-        await db.get('user_' + newUsername);
-        alert('Usuário já existe. Tente outro nome.');
+        await db.get(username);
+        alert('⚠️ Este nome de usuário já está em uso.');
     } catch (err) {
         if (err.status === 404) {
             await db.put({
-                _id: 'user_' + newUsername,
-                username: newUsername,
-                password: newPassword
+                _id: username,
+                password: password,
+                tipoUsuario: 'usuario'
             });
-            alert('Cadastro bem-sucedido! Você já pode fazer login.');
+            alert('✅ Cadastro realizado com sucesso!');
             showForm('login');
         } else {
-            alert('Erro ao acessar o banco: ' + err.message);
+            alert('❌ Erro ao acessar o banco de dados.');
         }
     }
 });
