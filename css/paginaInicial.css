@@ -12,19 +12,25 @@ nav#category-menu {
   background-color: #1f1f1f;
   padding: 20px;
 }
+
 nav#category-menu ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
+
 nav#category-menu li {
   margin-bottom: 15px;
 }
+
 nav#category-menu a {
   color: #bbb;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  display: block;
 }
+
 nav#category-menu a:hover {
   color: #1db954;
 }
@@ -45,23 +51,35 @@ main {
   display: flex;
   gap: 20px;
   align-items: center;
+  min-height: 280px;
 }
+
 #highlighted-movie img {
   max-width: 200px;
   border-radius: 8px;
   flex-shrink: 0;
+  object-fit: cover;
+  height: 280px;
 }
+
 #movie-info {
   flex: 1;
+  color: #eee;
 }
+
 #movie-info h2 {
   margin-top: 0;
   margin-bottom: 10px;
+  color: #1db954;
+  font-weight: 700;
+  font-size: 1.8rem;
 }
+
 #movie-info p {
   margin: 6px 0;
   line-height: 1.4;
 }
+
 #movie-info a.trailer-btn {
   display: inline-block;
   margin-top: 15px;
@@ -71,7 +89,9 @@ main {
   border-radius: 4px;
   text-decoration: none;
   font-weight: bold;
+  transition: background-color 0.3s ease;
 }
+
 #movie-info a.trailer-btn:hover {
   background-color: #17a44a;
 }
@@ -79,30 +99,81 @@ main {
 #movie-grid {
   flex: 1;
 }
+
 #movie-grid h3 {
   margin-top: 0;
   margin-bottom: 10px;
+  color: #eee;
+  font-weight: 700;
+  font-size: 1.4rem;
 }
+
 #movies {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px 0 40px;
 }
-.movie-item {
+
+.movie-card {
+  background-color: #222;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+  color: #eee;
+  text-align: center;
   cursor: pointer;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 8px rgba(0,0,0,0.7);
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
 }
-.movie-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px #1db954;
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px #1db954cc;
 }
-.movie-item img {
+
+.movie-img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card h4 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1db954;
+}
+
+.movie-card p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 0 0 12px;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 48px;
+}
+
+.movie-card button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1db954;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.movie-card button:hover {
+  background-color: #17a44a;
 }
 
 .modal {

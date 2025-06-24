@@ -12,7 +12,6 @@ let editandoUsuarioRev = null;
 let editandoFilmeId = null;
 let editandoFilmeRev = null;
 
-// ------------------- USUÁRIOS -------------------
 async function carregarUsuarios() {
     const result = await userDB.allDocs({ include_docs: true });
     userList.innerHTML = '';
@@ -94,7 +93,6 @@ document.getElementById('userFormCancel').addEventListener('click', () => {
     document.getElementById('userFormCancel').style.display = 'none';
 });
 
-// ------------------- FILMES -------------------
 async function carregarFilmes() {
     const result = await movieDB.allDocs({ include_docs: true });
     movieList.innerHTML = '';
@@ -183,6 +181,5 @@ document.getElementById('movieFormCancel').addEventListener('click', () => {
     document.getElementById('movieFormCancel').style.display = 'none';
 });
 
-// Iniciar
 carregarUsuarios();
 carregarFilmes();
