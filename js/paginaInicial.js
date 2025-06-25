@@ -120,7 +120,10 @@ function mostrarFilmeEmDestaque(filme) {
   sinopse.textContent = `Sinopse: ${filme.synopsis || ''}`;
   genero.innerHTML = `<strong>Gênero:</strong> ${filme.category || 'N/A'}`;
 
-  trailerBtn.href = filme.trailer || '#';
+  trailerBtn.onclick = (e) => {
+    e.preventDefault();
+    abrirTrailer(filme.trailer);
+  };
   trailerBtn.style.display = 'inline-block';
 }
 
