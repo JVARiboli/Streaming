@@ -32,7 +32,7 @@ h1 {
     font-size: 1.9rem;
     letter-spacing: 1.5px;
     margin-bottom: 25px;
-    color: #1db954; /* verde vibrante */
+    color: #1db954;
     text-shadow: 0 0 8px rgba(29, 185, 84, 0.8);
 }
 
@@ -136,7 +136,7 @@ button:hover {
 
 .hidden {
     display: none;
-    color: #e74c3c; /* vermelho vibrante para erro */
+    color: #e74c3c;
     text-align: center;
     margin-top: 14px;
     font-weight: 600;

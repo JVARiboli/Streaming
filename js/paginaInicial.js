@@ -20,7 +20,8 @@ function exibirFilmes(filmes) {
   moviesContainer.innerHTML = '';
 
   if (filmes.length === 0) {
-    moviesContainer.innerHTML = '<p>Nenhum filme encontrado.</p>';
+    moviesContainer.innerHTML = '<p>Nenhum filme disponível nessa categoria.</p>';
+    mostrarFilmeEmDestaque(null);
     return;
   }
 
@@ -30,15 +31,7 @@ function exibirFilmes(filmes) {
     div.innerHTML = `
       <img src="${filme.image}" alt="${filme.title}" class="movie-img" />
       <h4>${filme.title}</h4>
-      <p><strong>Categoria:</strong> ${filme.category}</p>
-      <p>${filme.synopsis}</p>
-      <button type="button">Ver Trailer</button>
     `;
-
-    div.querySelector('button').addEventListener('click', e => {
-      e.stopPropagation();
-      abrirTrailer(filme.trailer);
-    });
 
     div.addEventListener('click', () => {
       mostrarFilmeEmDestaque(filme);
@@ -46,24 +39,37 @@ function exibirFilmes(filmes) {
 
     moviesContainer.appendChild(div);
   });
+
+  mostrarFilmeEmDestaque(filmes[0]);
 }
 
 function mostrarFilmeEmDestaque(filme) {
+  const destaque = document.getElementById('highlighted-movie');
   const img = document.getElementById('highlighted-image');
   const titulo = document.getElementById('highlighted-title');
   const sinopse = document.getElementById('highlighted-synopsis');
   const genero = document.querySelector('#movie-info p strong').parentElement;
   const trailerBtn = document.querySelector('#movie-info a.trailer-btn');
 
+  if (!filme) {
+    destaque.style.display = 'none';
+    return;
+  }
+
+  destaque.style.display = 'flex';
+
   img.src = filme.image || '';
   img.alt = filme.title || '';
+  img.style.display = 'block';
 
   titulo.textContent = filme.title || '';
   sinopse.textContent = `Sinopse: ${filme.synopsis || ''}`;
-  
   genero.innerHTML = `<strong>Gênero:</strong> ${filme.category || 'N/A'}`;
+
   trailerBtn.href = filme.trailer || '#';
+  trailerBtn.style.display = 'inline-block';
 }
+
 
 function filterByCategory(categoria) {
   const filtrados = todosOsFilmes.filter(f => f.category === categoria);
@@ -72,13 +78,7 @@ function filterByCategory(categoria) {
   if (filtrados.length > 0) {
     mostrarFilmeEmDestaque(filtrados[0]);
   } else {
-    mostrarFilmeEmDestaque({
-      title: 'Nenhum filme encontrado',
-      synopsis: '',
-      category: '',
-      image: '',
-      trailer: '#'
-    });
+    mostrarFilmeEmDestaque(null); 
   }
 }
 

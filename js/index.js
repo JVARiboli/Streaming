@@ -21,10 +21,15 @@ function showForm(form) {
     document.getElementById('loginForm').classList.remove('active');
     document.getElementById('registerForm').classList.remove('active');
 
+    document.querySelector('.tab-login').classList.remove('active');
+    document.querySelector('.tab-register').classList.remove('active');
+
     if (form === 'login') {
         document.getElementById('loginForm').classList.add('active');
+        document.querySelector('.tab-login').classList.add('active');
     } else {
         document.getElementById('registerForm').classList.add('active');
+        document.querySelector('.tab-register').classList.add('active');
     }
 }
 
