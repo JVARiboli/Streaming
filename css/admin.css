@@ -67,10 +67,12 @@ label {
     margin: 12px 0 6px;
     font-weight: 600;
     color: #ccc;
-    text-shadow: 0 0 3px rgba(0,0,0,0.3);
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     width: 100%;
     padding: 10px 12px;
     border-radius: 8px;
@@ -93,7 +95,9 @@ input::placeholder {
     font-style: italic;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
     outline: none;
     border-color: #1db954;
     background-color: #162a16;
@@ -120,7 +124,8 @@ button:hover {
     box-shadow: 0 6px 25px rgba(23, 167, 65, 0.9);
 }
 
-#userList, #movieList {
+#userList,
+#movieList {
     margin-top: 10px;
     max-height: 250px;
     overflow-y: auto;

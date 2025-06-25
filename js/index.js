@@ -43,7 +43,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async (e) =
     try {
         const user = await db.get(username);
 
-        if (user.password === password) {      
+        if (user.password === password) {
             if (user.tipoUsuario === 'administrador')
                 window.location.href = 'admin.html';
             else
@@ -51,7 +51,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async (e) =
         } else {
             errorMsg.classList.remove('hidden');
         }
-        
+
     } catch (err) {
         errorMsg.classList.remove('hidden');
     }

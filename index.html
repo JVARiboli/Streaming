@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Entrar - Plataforma Streaming</title>
     <link rel="stylesheet" href="/css/style.css" />
 </head>
+
 <body>
     <div class="login-container">
         <h1>Bem-vindo ao JVFLIX</h1>
@@ -17,22 +19,11 @@
         <div id="loginForm" class="form-container active">
             <form>
                 <label for="username">Usuário</label>
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="Digite seu usuário"
-                    autocomplete="username"
-                    required
-                />
+                <input type="text" id="username" placeholder="Digite seu usuário" autocomplete="username" required />
 
                 <label for="password">Senha</label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Sua senha secreta"
-                    autocomplete="current-password"
-                    required
-                />
+                <input type="password" id="password" placeholder="Sua senha secreta" autocomplete="current-password"
+                    required />
 
                 <button type="submit">Entrar</button>
             </form>
@@ -44,31 +35,15 @@
         <div id="registerForm" class="form-container">
             <form>
                 <label for="newUsername">Novo usuário</label>
-                <input
-                    type="text"
-                    id="newUsername"
-                    placeholder="Escolha um nome de usuário"
-                    autocomplete="username"
-                    required
-                />
+                <input type="text" id="newUsername" placeholder="Escolha um nome de usuário" autocomplete="username"
+                    required />
 
                 <label for="newPassword">Nova senha</label>
-                <input
-                    type="password"
-                    id="newPassword"
-                    placeholder="Crie uma senha segura"
-                    autocomplete="new-password"
-                    required
-                />
+                    required />
 
                 <label for="confirmPassword">Confirmar senha</label>
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    placeholder="Repita a senha"
-                    autocomplete="new-password"
-                    required
-                />
+                <input type="password" id="confirmPassword" placeholder="Repita a senha" autocomplete="new-password"
+                    required />
 
                 <button type="submit">Cadastrar</button>
             </form>
@@ -78,4 +53,5 @@
     <script src="https://cdn.jsdelivr.net/npm/pouchdb/dist/pouchdb.min.js"></script>
     <script src="/js/index.js"></script>
 </body>
+
 </html>
