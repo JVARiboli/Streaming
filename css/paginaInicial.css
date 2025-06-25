@@ -110,7 +110,7 @@ main {
 
 #movies {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, max-content));
   gap: 20px;
   padding: 20px 0 40px;
 }
