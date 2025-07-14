@@ -44,6 +44,11 @@ document.querySelector('#loginForm form').addEventListener('submit', async (e) =
         const user = await db.get(username);
 
         if (user.password === password) {
+            localStorage.setItem('usuarioLogado', JSON.stringify({
+                username: user._id,
+                tipoUsuario: user.tipoUsuario
+            }));
+            
             if (user.tipoUsuario === 'administrador')
                 window.location.href = 'admin.html';
             else
