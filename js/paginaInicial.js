@@ -1,3 +1,10 @@
+const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+if (!usuarioLogado || usuarioLogado.tipoUsuario !== 'usuario') {
+    alert('Você precisa ser um usuário e estar logado para acessar essa página!');
+    window.location.href = 'index.html';
+}
+
 const movieDB = new PouchDB('filmesDB');
 const moviesContainer = document.getElementById('movies');
 const modal = document.getElementById('trailer-modal');
