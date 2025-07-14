@@ -1,3 +1,10 @@
+const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+if (!usuarioLogado || usuarioLogado.tipoUsuario !== 'administrador') {
+    alert('⛔ Acesso restrito! Apenas administradores podem acessar esta página.');
+    window.location.href = 'index.html';
+}
+
 const userDB = new PouchDB('usuariosDB');
 const movieDB = new PouchDB('filmesDB');
 
