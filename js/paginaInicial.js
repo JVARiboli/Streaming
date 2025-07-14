@@ -1,8 +1,8 @@
 const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 
-if (!usuarioLogado || usuarioLogado.tipoUsuario !== 'usuario') {
-    alert('Você precisa ser um usuário e estar logado para acessar essa página!');
-    window.location.href = 'index.html';
+if (!usuarioLogado) {
+  alert('Você precisa estar logado para acessar essa página!');
+  window.location.href = 'index.html';
 }
 
 const movieDB = new PouchDB('filmesDB');
@@ -144,6 +144,16 @@ function filterByCategory(categoria) {
     mostrarFilmeEmDestaque(null);
   }
 }
+
+document.getElementById("logout-btn").addEventListener("click", function (event) {
+  event.preventDefault();
+
+  localStorage.removeItem("usuarioLogado");
+  sessionStorage.removeItem("usuarioLogado");
+
+  window.location.href = "./index.html";
+});
+
 
 function abrirTrailer(url) {
   trailerIframe.src = url;

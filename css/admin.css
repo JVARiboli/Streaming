@@ -14,6 +14,12 @@ body {
     padding: 40px 20px;
 }
 
+.user-item .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+
 .admin-wrapper {
     display: flex;
     gap: 30px;

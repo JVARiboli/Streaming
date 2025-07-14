@@ -27,15 +27,22 @@ async function carregarUsuarios() {
         const div = document.createElement('div');
         div.className = 'user-item';
         div.innerHTML = `
-            <strong>${doc._id}</strong> - ${doc.tipoUsuario}
-            <button onclick="editarUsuario('${doc._id}')">✏️</button>
-            <button onclick="deletarUsuario('${doc._id}', '${doc._rev}')">🗑️</button>
+            <span><strong>${doc._id}</strong> - ${doc.tipoUsuario}</span>
+            <div class="user-actions">
+                <button onclick="editarUsuario('${doc._id}')">✏️</button>
+                <button onclick="deletarUsuario('${doc._id}', '${doc._rev}')">🗑️</button>
+            </div>
         `;
         userList.appendChild(div);
     });
 }
 
 async function editarUsuario(id) {
+    if (id === 'admin') {
+        alert('⛔ O usuário administrador padrão não pode ser editado.');
+        return;
+    }
+
     const doc = await userDB.get(id);
     document.getElementById('usuario').value = doc._id;
     document.getElementById('password').value = doc.password;
@@ -47,6 +54,11 @@ async function editarUsuario(id) {
 }
 
 async function deletarUsuario(id, rev) {
+    if (id === 'admin') {
+        alert('⛔ O usuário administrador padrão não pode ser excluído.');
+        return;
+    }
+
     if (confirm('Deseja realmente excluir este usuário?')) {
         await userDB.remove(id, rev);
         carregarUsuarios();
@@ -186,6 +198,12 @@ document.getElementById('movieFormCancel').addEventListener('click', () => {
     editandoFilmeId = null;
     editandoFilmeRev = null;
     document.getElementById('movieFormCancel').style.display = 'none';
+});
+
+document.getElementById("logout-btn").addEventListener("click", function () {
+    localStorage.removeItem("usuarioLogado");
+    sessionStorage.removeItem("usuarioLogado");
+    window.location.href = "./index.html";
 });
 
 carregarUsuarios();
