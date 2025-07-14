@@ -47,7 +47,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async (e) =
             if (user.tipoUsuario === 'administrador')
                 window.location.href = 'admin.html';
             else
-                window.location.href = 'paginainicial.html';
+                window.location.href = 'paginaInicial.html';
         } else {
             errorMsg.classList.remove('hidden');
         }
